@@ -200,28 +200,12 @@ all_data = (
     )
 )
 
-print("Processed data:")
-print(all_data)
-print(all_data.glimpse())
-
-
 states = [state for v in year_to_state_abbreviation.values() for state in v]
-
-all_data.select("child1", "child2").describe()
-all_data.select(
-    pl.col("child2").filter(pl.col("child2").is_in(range(1, 7))).sum(),
-    pl.col("child1").filter(pl.col("child1").is_in(range(1, 88))).sum(),
-)
-
-
-all_data.filter(pl.col("state_abv").eq("ID")).select("mental_health").mean()
-all_data.filter(pl.col("state_abv").eq("ID")).select("mental_health").mean()
-
 all_data = (
     all_data.filter(
         pl.col("child1").is_in(range(1, 88)),
-        # pl.col("child2").is_in(range(2, 6 + 1)),
         pl.col("state_abv").is_in(states),
+        # pl.col("child2").is_in(range(2, 6 + 1)),
         # pl.col("mental_health").is_in(range(1, 30 + 1)),
         # pl.col("pm_health").is_in(range(1, 30 + 1)),
     )
@@ -235,21 +219,6 @@ all_data = (
 )
 
 
-all_data["mental_health"].value_counts()
-all_data["mental_health"].describe()
-
-print(all_data)
-print("Counts by year:")
-print(all_data.group_by("treat_year").agg(pl.len().alias("n")).sort("treat_year"))
-print(
-    all_data.group_by("treated").agg(
-        pl.col("mental_health").mean(),
-        pl.col("good_mh").mean(),
-        pl.col("pm_health").mean(),
-        pl.col("child1").mean(),
-        pl.col("child2").mean(),
-    )
-)
 print(f"Total number of observations: {len(all_data)}")
 
 

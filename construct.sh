@@ -2,8 +2,8 @@
 
 # Script to construct cleaning scripts from existing cleaning scripts
 # by https://github.com/winstonlarson/brfss/tree/master
-# I change the code to read parquet files; remove last lines and add some new
-# columns
+# I change the code to read parquet files; remove last 4 lines and add some new
+# columns 
 
 mkdir -p clean
 

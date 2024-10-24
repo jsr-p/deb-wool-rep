@@ -1,6 +1,8 @@
+all: data base proc
+
 data:
-	collect.sh
-	unzip.sh
+	bash collect.sh
+	bash unzip.sh
 
 base:
 	bash construct.sh
@@ -10,3 +12,6 @@ base:
 proc:
 	python combine.py > ov.txt
 	python wool.py
+
+overview:
+	python overview.py
